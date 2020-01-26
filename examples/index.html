@@ -35,6 +35,7 @@
 </head>
 
 <body class="">
+
   <div class="wrapper ">
     <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
@@ -170,8 +171,9 @@
                   <i class="material-icons">restaurant</i>
                 </div>
                 <p class="card-category">Calories Eaten</p>
-                <h3 class="card-title">675/700
-                  <small></small>
+                <h3 class="card-title" onclick="myFunction()" id="calories">
+                  1272
+                </h3>
                 </h3>
               </div>
               <div class="card-footer">
@@ -205,7 +207,7 @@
                   <i class="material-icons">directions_run</i>
                 </div>
                 <p class="card-category">Cal Burned</p>
-                <h3 class="card-title">750</h3>
+                <h3 class="card-title">1800</h3>
               </div>
               <div class="card-footer">
                 <div class="stats">
@@ -255,8 +257,8 @@
                   <div class="ct-chart" id="websiteViewsChart"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">Glasses of Water</h4>
-                  <p class="card-category">Reminder: Have a glass of water</p>
+                  <h4 class="card-title">Calories Intake</h4>
+                  <p class="card-category">Number of cals taken by you</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -271,8 +273,8 @@
                   <div class="ct-chart" id="completedTasksChart"></div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title">Calories Intake</h4>
-                  <p class="card-category">Number of cals eaten by you</p>
+                  <h4 class="card-title">Calories burned</h4>
+                  <p class="card-category">Number of cals burned by you</p>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -288,7 +290,7 @@
                 <div class="card-header card-header-tabs card-header-success">
                   <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
-                      <span class="nav-tabs-title">Cal-Calculator</span>:</span>
+                      <span class="nav-tabs-title" id="calories">Cal-Calculator</span>:</span>
                     </div>
                   </div>
                 </div>
@@ -601,6 +603,7 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <script>
+
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');
@@ -778,6 +781,23 @@
 
     });
   </script>
+
+<script>
+  async function myFunction(){
+ 
+  url = 'http://unifitcw.herokuapp.com/'       ;
+  const response = await fetch(url);
+  const json = await response.json();
+  // for (var i=0; i<=2; i++){
+  //   calo = json[i].nf_calories
+  // }
+  calo = json[0].nf_calories + json[1].nf_calories
+  document.getElementById("calories").innerHTML = `${calo}`;
+  }
+  //cals.innerHtml = `<span>${json}</span>`
+</script>
+
+
 </body>
 
 </html>
